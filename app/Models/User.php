@@ -1,48 +1,103 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
-class User extends Authenticatable
+/**
+ * Class User
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $password
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string $role
+ *
+ * @property Student $student
+ * @property Teacher $teacher
+ *
+ * @package App\Models
+ */
+class User extends Model
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+	const ROLE_STUDENT = 'student';
+	const ROLE_TEACHER = 'teacher';
+	const ROLE_ADMIN = 'admin';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+	const ROLES = [
+		self::ROLE_STUDENT,
+		self::ROLE_TEACHER,
+		self::ROLE_ADMIN
+	];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+	protected $table = 'users';
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+	protected $hidden = [
+		'password'
+	];
+
+	protected $fillable = [
+		'name',
+		'password',
+		'role'
+	];
+
+	public function student()
+	{
+		return $this->hasOne(Student::class);
+	}
+
+	public function teacher()
+	{
+		return $this->hasOne(Teacher::class);
+	}
+
+	public function isPasswordValid(string $password) : bool{
+		return Hash::check($password, $this->password);
+	}
+
+	/**
+	 * Get the identifier that will be stored in the subject claim of the JWT.
+	 *
+	 * @return mixed
+	 */
+	public function getJWTIdentifier()
+	{
+		return $this->getKey();
+	}
+
+	/**
+	 * Return a key value array, containing any custom claims to be added to the JWT.
+	 *
+	 * @return array
+	 */
+	public function getJWTCustomClaims()
+	{
+		return [];
+	}
+
+	public function isStudent() : bool{
+		return $this->role === self::ROLE_STUDENT;
+	}
+
+	public function isTeacher() : bool{
+		return $this->role === self::ROLE_TEACHER;
+	}
+
+	public function isAdmin() : bool{
+		return $this->role === self::ROLE_ADMIN;
+	}
+
+	public function setPassword(string $password) : string{
+		return $this->password = Hash::make($password);
+	}
 }
