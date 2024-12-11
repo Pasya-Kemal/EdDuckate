@@ -24,7 +24,7 @@
             background-color: #61a5fa;
         }
     </style>
-    <link rel="icon" href="{{ asset('images/logos.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/svg+xml">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700;900&display=swap"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
