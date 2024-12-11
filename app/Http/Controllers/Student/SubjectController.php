@@ -144,7 +144,7 @@ class SubjectController extends Controller
 		return response()->json(["message" => "uploaded"]);
 	}
 
-    public function oncheat(Subject $subject, Request $request) {
-        return $this->submit($subject, $request);
-    }
+	public function oncheat(Subject $subject, Request $request) {
+		return $this->submit($subject, $request);
+	}
 }

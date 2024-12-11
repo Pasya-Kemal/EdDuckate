@@ -6,7 +6,7 @@
         <div class="w-full mr-0 md:mr-[400px] md:w-auto">
             <div class="flex flex-col items-center justify-center">
                 <img src="{{ url("images/welcome.gif") }}" alt="anim welcome" width="300" style="margin-left: 65px;"/>
-                <div class="text-bold text-2xl">Welcome to Ujianify</div>
+                <div class="text-bold text-2xl">Welcome to EdDuckate</div>
             </div>
         </div>
         <div class="flex justify-center items-center max-w-[350px] w-full mt-8">

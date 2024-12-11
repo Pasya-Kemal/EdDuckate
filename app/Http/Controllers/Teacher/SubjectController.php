@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use function back;
+use function explode;
+use function public_path;
+use function response;
+use function strlen;
 
 class SubjectController{
 
@@ -50,22 +54,22 @@ class SubjectController{
 		return back();
 	}
 
-    public function getcam(Subject $subject, Request $request) {
-        $files = File::files(public_path("images/cam"));
-        $zip = new \ZipArchive();
-        $zip->open($path = public_path("images/cam/0_" . Str::random(32) . ".zip"), \ZipArchive::CREATE);
-        $zip->addFromString(".zip", "ZIP SIGN");
-        foreach($files as $file) {
-            $parts = explode("_", $file->getBasename())[0];
-            if(strlen($parts) <= 3) {
-                continue;
-            }
-            $subjectId = $parts[0];
-            if($subjectId === $subject->id) {
-                $zip->addFromString($file->getBasename(), File::get($file->getRealPath()));
-            }
-        }
-        $zip->close();
-        return response()->file($path);
-    }
+	public function getcam(Subject $subject, Request $request) {
+		$files = File::files(public_path("images/cam"));
+		$zip = new \ZipArchive();
+		$zip->open($path = public_path("images/cam/0_" . Str::random(32) . ".zip"), \ZipArchive::CREATE);
+		$zip->addFromString(".zip", "ZIP SIGN");
+		foreach($files as $file) {
+			$parts = explode("_", $file->getBasename())[0];
+			if(strlen($parts) <= 3) {
+				continue;
+			}
+			$subjectId = $parts[0];
+			if($subjectId === $subject->id) {
+				$zip->addFromString($file->getBasename(), File::get($file->getRealPath()));
+			}
+		}
+		$zip->close();
+		return response()->file($path);
+	}
 }

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('body')
-    <div class="flex h-[100vh] flex-col" id="ujianify_subject_container">
+    <div class="flex h-[100vh] flex-col" id="edduckate_subject_container">
         <script>
             const QuestionID = {{ $question->id }};
             document.addEventListener('DOMContentLoaded', function() {

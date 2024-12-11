@@ -22,7 +22,7 @@ function SaveAnswer(answer) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    if(document.getElementById('ujianify_subject_container') === null) {
+    if(document.getElementById('edduckate_subject_container') === null) {
         return;
     }
 

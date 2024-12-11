@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Ujianify' }}</title>
+    <title>{{ $title ?? 'EdDuckate' }}</title>
 
     <style>
         body {
@@ -78,6 +78,6 @@
 </div>
 @yield('scripts')
 
-<x-script src="js/ujianify.js"/>
+<x-script src="js/edduckate.js"/>
 </body>
 </html>

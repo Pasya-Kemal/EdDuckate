@@ -69,7 +69,7 @@ class BuildJavascript extends Command
 		$savedBytes = $totalUnminifiedLength - $totalMinifiedLength;
 		$this->info('Saved bytes : ' . $this->readableBytes($savedBytes) . ' (' . round(($savedBytes / $totalUnminifiedLength) * 100, 1) . '%)');
 
-		File::put(base_path('public/js/ujianify.js'), $minifiedJS);
+		File::put(base_path('public/js/edduckate.js'), $minifiedJS);
 	}
 
 	private function readableBytes(int $bytes) : string{

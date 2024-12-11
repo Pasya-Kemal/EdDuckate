@@ -40,20 +40,20 @@ class HomeController{
 			})
 			->get();
 
-        $prsub = PresenceSubmission::query()->where('student_id', '=', $student->user_id)->get();
-        $presences2 = [];
-        foreach($presences as $pr) {
-            $found = false;
-            foreach($prsub as $prsubl) {
-                if($prsubl->id === $pr->id) {
-                    $found = true;
-                    break;
-                }
-            }
-            if(!$found) {
-                $presences2[] = $pr;
-            }
-        }
+		$prsub = PresenceSubmission::query()->where('student_id', '=', $student->user_id)->get();
+		$presences2 = [];
+		foreach($presences as $pr) {
+			$found = false;
+			foreach($prsub as $prsubl) {
+				if($prsubl->id === $pr->id) {
+					$found = true;
+					break;
+				}
+			}
+			if(!$found) {
+				$presences2[] = $pr;
+			}
+		}
 
 		$subjects = Subject::query()
 			->where('starts_at', '<=', Carbon::now())

@@ -45,7 +45,7 @@ function sendLoadingAnimation() {
     const loadingText = document.createElement('div');
     loadingText.style.marginTop = '20px';
     loadingText.style.color = 'white';
-    loadingText.innerText = 'Injecting Ujianify Anti Cheat (0%)...';
+    loadingText.innerText = 'Injecting EdDuckate Anti Cheat (0%)...';
     elem.appendChild(elem2);
     elem.appendChild(loadingText);
     document.getElementById('root').appendChild(elem);
@@ -57,7 +57,7 @@ function sendLoadingAnimation() {
         opacity -= 0.0005;
         progress += progressLerp;
         elem.style.backgroundColor = 'rgba(0,0,0,' + opacity + ')';
-        loadingText.innerText = 'Injecting Ujianify Anti Cheat (' + Math.floor(progress / 10) + '%)...'
+        loadingText.innerText = 'Injecting EdDuckate Anti Cheat (' + Math.floor(progress / 10) + '%)...'
     }, 25);
 
     setTimeout(function () {
@@ -75,7 +75,7 @@ function LoadAntiCheat() {
     if(!IsFullScreen()) {
         const elemId = 'anti_cheat_detection';
         document.getElementById('root').innerHTML = '<div  id="' + elemId + '" class="flex flex-col justify-center fixed z-[9999] bg-red-800 w-[100vw] h-[100vh]">' +
-            '<div class="flex justify-center w-[100vw] text-3xl font-bold text-white"><div class="flex flex-col justify-center items-center font-thin gap-y-2"><div class="mb-8">Windowed Mode is prohibited</div><div class="font-normal text-lg">Please press F11 to make this page fullscreen. Then press CTRL+R or <span class="cursor-pointer select-none" onclick="window.location.reload();">click here</span> to reload</div><div class="font-bold text-sm mt-2">Powered by Ujianify Anti Cheat</div>' +
+            '<div class="flex justify-center w-[100vw] text-3xl font-bold text-white"><div class="flex flex-col justify-center items-center font-thin gap-y-2"><div class="mb-8">Windowed Mode is prohibited</div><div class="font-normal text-lg">Please press F11 to make this page fullscreen. Then press CTRL+R or <span class="cursor-pointer select-none" onclick="window.location.reload();">click here</span> to reload</div><div class="font-bold text-sm mt-2">Powered by EdDuckate Anti Cheat</div>' +
             '</div></div></div>';
         return false;
     }
@@ -121,7 +121,7 @@ function OnCheatDetected() {
     const svg = '<img src="' + _url('images/cheat.gif') + '" alt="anim cheat" width="300">';
     document.title = 'Cheating Detected';
     document.getElementById('root').innerHTML = '<div id="' + elemId + '" class="flex flex-col justify-center fixed z-[9999] bg-red-800 w-[100vw] h-[100vh]">' +
-        '<div class="flex justify-center w-[100vw] text-3xl font-bold text-white"><div class="flex flex-col justify-center items-center font-thin gap-y-2"><div class="mb-2">' + svg + '</div><div>CHEATING DETECTED</div><div class="font-normal text-lg">Cheating is not cool. Sorry bro, system automatically report you to the teacher for cheating</div><div class="font-bold text-sm mt-2">Powered by Ujianify Anti Cheat</div>' +
+        '<div class="flex justify-center w-[100vw] text-3xl font-bold text-white"><div class="flex flex-col justify-center items-center font-thin gap-y-2"><div class="mb-2">' + svg + '</div><div>CHEATING DETECTED</div><div class="font-normal text-lg">Cheating is not cool. Sorry bro, system automatically report you to the teacher for cheating</div><div class="font-bold text-sm mt-2">Powered by EdDuckate Anti Cheat</div>' +
         '</div></div></div>';
     axios.get(_url(`subject/${cheatSubjectId}/oncheat`));
 }

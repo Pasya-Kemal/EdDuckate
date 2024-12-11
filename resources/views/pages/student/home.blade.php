@@ -5,7 +5,7 @@
         @include('components.message')
         <div class="flex w-full">
             <div class="w-full">
-                <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to Ujianify</h1>
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to EdDuckate</h1>
                 <p class="text-xl mb-7">Hello {{ $student->full_name }}</p>
                 <p class="text-xl font-bold mb-3">Presences</p>
                 <div class="flex flex-wrap gap-6 justify-start">

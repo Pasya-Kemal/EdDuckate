@@ -12,10 +12,10 @@ function generateModalID(length) {
 
 
 function showModal(contentID) {
-    const prefix = '__ujianify__modal__';
+    const prefix = '__edduckate__modal__';
     const modalID = prefix + generateModalID(16);
     const content = document.getElementById(contentID).innerHTML;
-    const modalHTML = '<div id="' + modalID + '" class="__ujianify__modal__wrapper__ relative z-10">' +
+    const modalHTML = '<div id="' + modalID + '" class="__edduckate__modal__wrapper__ relative z-10">' +
                 '<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>' +
                 '<div class="fixed inset-0 z-10 overflow-y-auto">' +
                     '<div class="flex min-h-full justify-center p-4 text-center items-center">' +
