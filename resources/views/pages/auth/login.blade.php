@@ -5,7 +5,7 @@
 
         <div class="w-full mr-0 md:mr-[400px] md:w-auto">
             <div class="flex flex-col items-center justify-center">
-                <img src="{{ url("images/BebekPakDengklek.gif") }}" alt="anim welcome" width="300" style="margin-left: 65px;"/>
+                <img src="{{ url("images/hiquack.gif") }}" alt="anim welcome" width="300" style="margin-left: 65px;"/>
                 <div class="text-bold text-2xl">Welcome to EdDuckate</div>
             </div>
         </div>

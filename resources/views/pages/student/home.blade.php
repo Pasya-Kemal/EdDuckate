@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div style="margin-top: 80px;">
-                <img src="{{ url("images/student_welcome.gif") }}" alt="anim welcome student" width="400">
+                <img src="{{ url("images/BebekPakDengklek.gif") }}" alt="anim welcome student" width="400">
             </div>
         </div>
     </div>

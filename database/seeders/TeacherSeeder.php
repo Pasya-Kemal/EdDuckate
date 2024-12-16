@@ -15,29 +15,32 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        $majors = DB::table('majors')->get();
+         $classrooms = DB::table('classroom')->get();
 
-        foreach ($majors as $major) {
+         foreach ($classrooms as $classroom) {
+           for($i = 1; $i <= 2; $i++){
+            $teacherName = 'guru-' . strtolower(str_replace(' ', '-', $classroom->name)) . '-' . $i;
             $teacher = Teacher::create([
                 'user_id' => DB::table('users')->insertGetId([
-                    'name' => 'teacher ' . $major->name . ' ' . Str::random(5),
-                    'password' => Hash::make('password'),
+                    'name' => $teacherName,
+                    'password' => Hash::make('teacher'),
                     'role' => 'teacher',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]),
-                'external_id' => 'T-' . strtoupper($major->name),
-                'full_name' => 'Guru ' . $major->name,
+                'external_id' => 'T-' . strtoupper(str_replace(' ', '', $classroom->name)) .'-' .$i,
+                'full_name' => 'Guru ' . $classroom->name . ' ' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
             DB::table('teacher_majors')->insert([
                 'teacher_id' => $teacher->user_id,
-                'major_id' => $major->id,
+                'major_id' => $classroom->major_id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }
+       }
     }
 }

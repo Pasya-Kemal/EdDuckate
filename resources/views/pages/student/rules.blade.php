@@ -53,7 +53,7 @@
         <div class="bg-white rounded-lg overflow-hidden shadow-md">
             <div class="flex px-4 py-4 gap-2">
                 <div>
-                    <img style="width: 350px" src="{{ url('/images/rules.gif') }}" alt="rules anim"/>
+                    <img style="width: 350px" src="{{ url('/images/BebekPakDengklek.gif') }}" alt="rules anim"/>
                 </div>
                 <div class="w-full">
                     <h2 class="text-lg font-bold mb-4">Online Exam Rules</h2>

@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Student;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Student;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class StudentSeeder extends Seeder
 {
@@ -15,24 +14,56 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        $classrooms = DB::table('classroom')->get();
+        $majors = DB::table('majors')->pluck('id')->toArray();
+        $classrooms = DB::table('classroom')->pluck('id')->toArray();
 
-        foreach ($classrooms as $classroom) {
-            Student::create([
-                'user_id' => DB::table('users')->insertGetId([
-                    'name' => 'student' . $classroom->name . ' ' . Str::random(5),
-                    'password' => Hash::make('student'),
-                    'role' => 'student',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]),
-                'external_id' => 'S-' . strtoupper($classroom->name),
-                'full_name' => 'Siswa ' . $classroom->name,
-                'major_id' => $classroom->major_id,
-                'classroom_id' => $classroom->id,
+        $studentsData = [
+            [
+                'external_id' => 'S-PASYA',
+                'full_name' => 'Pasya Student',
+                'password' => 'pasya123',
+            ],
+            [
+               'external_id' => 'S-HEIKAL',
+               'full_name' => 'Heikal Student',
+               'password' => 'heikal123',
+           ],
+           [
+               'external_id' => 'S-HANS',
+               'full_name' => 'Hans Student',
+               'password' => 'hans123',
+           ],
+           [
+               'external_id' => 'S-NATHA',
+               'full_name' => 'Natha Student',
+               'password' => 'natha123',
+           ],
+        ];
+
+         foreach ($studentsData as $student) {
+            $userId = DB::table('users')->insertGetId([
+                'name' =>  explode(' ', $student['full_name'])[0],
+                'password' => Hash::make($student['password']),
+                'role' => 'student',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-        }
+              
+              $randomMajorId = $majors[array_rand($majors)];
+              $randomClassroomId = $classrooms[array_rand($classrooms)];
+
+
+            Student::insert([
+               [
+                    'user_id' => $userId,
+                    'external_id' => $student['external_id'],
+                    'full_name' => $student['full_name'],
+                    'major_id' => $randomMajorId,
+                    'classroom_id' =>  $randomClassroomId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            ]);
+         }
     }
 }
